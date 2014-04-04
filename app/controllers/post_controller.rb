@@ -15,7 +15,8 @@ class PostController < ApplicationController
 	@post = Post.new(params[:post])
 	
 	if @post.save
-		redirect_to :action => 'index', :notice => "your post was saved"
+		flash[:notice] = 'Tip was successfully saved.'
+		redirect_to :action => 'index'
 	else
 		render "new"
 	end
@@ -29,7 +30,8 @@ class PostController < ApplicationController
 	@post = Post.find(params[:id])
 	
 	if @post.update_attributes!(params[:post])
-		redirect_to :action => 'index', :notice => "your post was updated"
+		flash[:notice] = 'Tip was successfully updated.'
+		redirect_to :action => 'index'
 	else
 		render "new"
 	end
@@ -39,7 +41,8 @@ class PostController < ApplicationController
 	@post = Post.find(params[:id])
 	
 	if @post.destroy
-		redirect_to :action => 'index', :notice => "your post was deleted"
+		flash[:notice] = 'Tip was successfully deleted.'
+		redirect_to :action => 'index'
 	else
 		render "new"
 	end
